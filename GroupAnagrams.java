@@ -1,20 +1,19 @@
-import java.util.*;
-
-public class WordPattern {
-    public static void main(String[] args) {
-        String strs[] = {"eat","tea","tan","ate","nat","bat"};
-
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> myMap = new HashMap<>();
-        for(int i = 0; i < strs.length; i++) {
+        
+         for(int i = 0; i < strs.length; i++) {
             char[] strsToCharArray = strs[i].toCharArray();
             Arrays.sort(strsToCharArray);
-            String strsToChar = new String(strsToCharArray);
-
-           if(!myMap.containsKey(strsToChar)) {
-               myMap.put(strsToChar, new ArrayList<>());
+            String sortedWord = new String(strsToCharArray);
+            
+            if (!myMap.containsKey(sortedWord)) {
+                myMap.put(sortedWord, new ArrayList<>());
             }
-               myMap.get(strsToChar).add(strsToChar);
+            
+            myMap.get(sortedWord).add(strs[i]);
         }
-        System.out.println(new ArrayList<>(myMap.values()));
+        
+        return new ArrayList<>(myMap.values());
     }
 }
